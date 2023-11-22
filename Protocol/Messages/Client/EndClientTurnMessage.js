@@ -1,4 +1,5 @@
 const PiranhaMessage = require('../../PiranhaMessage')
+// const LogicClaimRewardCommand = require('../Server/LogicClaimRewardCommand')
 
 class EndClientTurnMessage extends PiranhaMessage {
   constructor (client, bytes) {
@@ -20,7 +21,11 @@ class EndClientTurnMessage extends PiranhaMessage {
   }
 
   process () {
-    
+    /*switch(this.command){
+      case 503:
+        console.log(this.command)
+        return new LogicClaimRewardCommand(this.client).send()
+    }*/
   }
 }
 

@@ -1,5 +1,5 @@
 # Badland.js
-First open-source Badland Brawl v3.4.3.3 JavaScript server! Based on [nodebrawl-core](https://github.com/tailsjs/nodebrawl-core)
+First open-source Badland Brawl v3.4.4.1 JavaScript server! Based on [nodebrawl-core](https://github.com/tailsjs/nodebrawl-core)
 
 ## Setting up
 1. Download/clone a repository
@@ -8,7 +8,7 @@ First open-source Badland Brawl v3.4.3.3 JavaScript server! Based on [nodebrawl-
 
 ## How to play?
 To play you need custom client. You can change IP in Frida-Gadget config
-* Badland Brawl [Android]: [Download here!](https://mega.nz/file/2vxiEKJC#8hddEO8O0M2MF6ixR__R8o5vjhmCdrqIo4KUO279PN8) Change IP in `/lib/armeabi-v7a/libktjs.config.so`
+* Badland Brawl [Android]: [Download here!](https://mega.nz/file/ajQHVBiT#If_WQefEuSInBk_OD272uQTwSD1GlLMDNaFFd9xHvkk) Change IP in `/lib/armeabi-v7a/libbadland.so`
 * Badland Brawl [iOS]: Coming soon!
 
 ## Screens

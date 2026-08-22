@@ -1,10 +1,10 @@
 export class LogicGlobalEvent {
     static encode(stream) {
-        stream.writeVInt(6368)
-        stream.writeVInt(37)
-        stream.writeVInt(1780704000)
-        stream.writeVInt(1780875000)
-        stream.writeVInt(6368)
+        stream.writeVInt(6571)
+        stream.writeVInt(10)
+        stream.writeVInt(1787356800)
+        stream.writeVInt(1787527800)
+        stream.writeVInt(6571)
         // VintArr 1
         stream.writeVInt(19)
         stream.writeVInt(105)
@@ -363,11 +363,11 @@ export class LogicGlobalEvent {
 
         // VintArr 10
         stream.writeVInt(5)
-        stream.writeVInt(0)
-        stream.writeVInt(0)
-        stream.writeVInt(0)
-        stream.writeVInt(0)
-        stream.writeVInt(0)
+        stream.writeVInt(1)
+        stream.writeVInt(1)
+        stream.writeVInt(1)
+        stream.writeVInt(1)
+        stream.writeVInt(1)
 
         // VintArr 11
         stream.writeVInt(5)
@@ -377,23 +377,6 @@ export class LogicGlobalEvent {
         stream.writeVInt(-1)
         stream.writeVInt(-1)
 
-        // fani thing VintArr 11.5
-        stream.writeVInt(5)
-        // if (count < 1) writeVInt()
-        // else ...bottom code
-        stream.writeVInt(-1)
-        stream.writeVInt(-1)
-        stream.writeVInt(-1)
-        stream.writeVInt(-1)
-        stream.writeVInt(-1)
-        stream.writeVInt(5)
-        stream.writeVInt(-2)
-        stream.writeVInt(-2)
-        stream.writeVInt(-2)
-        stream.writeVInt(-2)
-        stream.writeVInt(-2)
-        // yep
-
         // VintArr 12
         stream.writeVInt(5)
         stream.writeVInt(-1)
@@ -402,9 +385,25 @@ export class LogicGlobalEvent {
         stream.writeVInt(-1)
         stream.writeVInt(-1)
 
-        stream.writeVInt(4486)
-        stream.writeVInt(46)
-        stream.writeVInt(70088)
+        // VintArr 13
+        stream.writeVInt(5)
+        stream.writeVInt(-2)
+        stream.writeVInt(-2)
+        stream.writeVInt(-2)
+        stream.writeVInt(-2)
+        stream.writeVInt(-2)
+
+        // VintArr 14
+        stream.writeVInt(5)
+        stream.writeVInt(-1)
+        stream.writeVInt(-1)
+        stream.writeVInt(-1)
+        stream.writeVInt(-1)
+        stream.writeVInt(-1)
+
+        stream.writeVInt(4489)
+        stream.writeVInt(60)
+        stream.writeVInt(70091) // current brawlpass season
         stream.writeVInt(0)
         stream.writeVInt(0)
     }

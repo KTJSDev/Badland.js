@@ -18,6 +18,8 @@ import { LogicGlobalEvent } from "../../home/events/LogicGlobalEvent.js";
 import { LogicCampaignDonationManager } from "../../home/donation/LogicCampaignDonationManager.js";
 import { LogicStory } from "../../home/story/LogicStory.js";
 import { ByteStream } from "../../../titan/stream/ByteStream.js";
+import { LogicWelcomeBack } from "../../home/data/LogicWelcomeBack.js";
+import { LogicStreak } from "../../home/data/LogicStreak.js";
 
 export class OwnHomeDataMessage extends PiranhaMessage {
     static KEY_VALUES = 7
@@ -57,6 +59,7 @@ export class OwnHomeDataMessage extends PiranhaMessage {
         this.stream.writeVInt(0)
         this.stream.writeVInt(0)
         this.stream.writeVInt(-1)
+        // LogicTimer end
 
         this.stream.writeInt(1780847366)
         this.stream.writeVInt(0)
@@ -69,13 +72,16 @@ export class OwnHomeDataMessage extends PiranhaMessage {
         LogicRewardManager.encode(this.stream)
 
         LogicCreatorSupport.encode(this.stream)
+        LogicWelcomeBack.encode(this.stream)
+        LogicStreak.encode(this.stream)
 
         this.stream.writeVInt(-1)
+        // LogicHome end
 
         this.stream.writeLong(0, 1)
 
         this.stream.writeVInt(0)
-        this.stream.writeVInt(11670)
+        this.stream.writeVInt(54214)
         this.stream.writeVInt(-1)
         this.stream.writeVInt(0)
 
@@ -160,18 +166,18 @@ export class OwnHomeDataMessage extends PiranhaMessage {
         this.stream.writeVInt(0)
         this.stream.writeVInt(0)
 
-        // BitList 3
+        // BitList 3 (battlepass related)
         this.stream.writeVInt(8)
-        this.stream.writeVInt(0)
-        this.stream.writeVInt(0)
-        this.stream.writeVInt(0)
-        this.stream.writeVInt(0)
-        this.stream.writeVInt(0)
-        this.stream.writeVInt(0)
-        this.stream.writeVInt(0)
-        this.stream.writeVInt(0)
+        this.stream.writeVInt(0xFFFFFFFF)
+        this.stream.writeVInt(0xFFFFFFFF)
+        this.stream.writeVInt(0xFFFFFFFF)
+        this.stream.writeVInt(0xFFFFFFFF)
+        this.stream.writeVInt(0xFFFFFFFF)
+        this.stream.writeVInt(0xFFFFFFFF)
+        this.stream.writeVInt(0xFFFFFFFF)
+        this.stream.writeVInt(0xFFFFFFFF)
 
-        this.stream.writeVInt(18088014)
+        this.stream.writeVInt(51626062)
         this.stream.writeVInt(0)
         this.stream.writeVInt(0)
         this.stream.writeVInt(0)
@@ -188,6 +194,7 @@ export class OwnHomeDataMessage extends PiranhaMessage {
 
         // CustomDeck[]
         this.stream.writeVInt(2)
+
         this.stream.writeBoolean(true)
         // CustomDeck
         this.stream.writeBoolean(true)
@@ -234,10 +241,11 @@ export class OwnHomeDataMessage extends PiranhaMessage {
 
         // CustomObject
         this.stream.writeVInt(1)
-        this.stream.writeVInt(1) // somehow related to trophies idk didn't mined it
+        this.stream.writeVInt(5)
         this.stream.writeVInt(-1)
         this.stream.writeVInt(0)
         this.stream.writeBoolean(false)
+
         this.stream.writeBoolean(true)
         // CustomDeck
         this.stream.writeBoolean(true)
@@ -263,10 +271,11 @@ export class OwnHomeDataMessage extends PiranhaMessage {
 
         // CustomCollection[]
         this.stream.writeVInt(3)
+
         this.stream.writeBoolean(true)
         // CustomCollection
         this.stream.writeVInt(1)
-        this.stream.writeVInt(1)
+        this.stream.writeVInt(5)
 
         // CustomObject
         this.stream.writeVInt(1)
@@ -274,19 +283,78 @@ export class OwnHomeDataMessage extends PiranhaMessage {
         this.stream.writeVInt(-1)
         this.stream.writeVInt(0)
         this.stream.writeBoolean(false)
+
+        // CustomObject
+        this.stream.writeVInt(1)
+        this.stream.writeVInt(7)
+        this.stream.writeVInt(-1)
+        this.stream.writeVInt(0)
         this.stream.writeBoolean(false)
+
+        // CustomObject
+        this.stream.writeVInt(1)
+        this.stream.writeVInt(8)
+        this.stream.writeVInt(-1)
+        this.stream.writeVInt(0)
+        this.stream.writeBoolean(false)
+
+        // CustomObject
+        this.stream.writeVInt(1)
+        this.stream.writeVInt(11)
+        this.stream.writeVInt(-1)
+        this.stream.writeVInt(0)
+        this.stream.writeBoolean(false)
+
+        // CustomObject
+        this.stream.writeVInt(1)
+        this.stream.writeVInt(12)
+        this.stream.writeVInt(-1)
+        this.stream.writeVInt(0)
+        this.stream.writeBoolean(false)
+        this.stream.writeBoolean(false)
+
 
         this.stream.writeBoolean(true)
         // CustomCollection
         this.stream.writeVInt(2)
+        this.stream.writeVInt(4)
+
+        // CustomObject
+        this.stream.writeVInt(2)
+        this.stream.writeVInt(1001)
+        this.stream.writeVInt(-1)
         this.stream.writeVInt(0)
         this.stream.writeBoolean(false)
+
+        // CustomObject
+        this.stream.writeVInt(2)
+        this.stream.writeVInt(1002)
+        this.stream.writeVInt(-1)
+        this.stream.writeVInt(0)
+        this.stream.writeBoolean(false)
+
+        // CustomObject
+        this.stream.writeVInt(2)
+        this.stream.writeVInt(4)
+        this.stream.writeVInt(-1)
+        this.stream.writeVInt(0)
+        this.stream.writeBoolean(false)
+
+        // CustomObject
+        this.stream.writeVInt(2)
+        this.stream.writeVInt(1)
+        this.stream.writeVInt(-1)
+        this.stream.writeVInt(0)
+        this.stream.writeBoolean(false)
+        this.stream.writeBoolean(false)
+
 
         this.stream.writeBoolean(true)
         // CustomCollection
         this.stream.writeVInt(4)
         this.stream.writeVInt(0)
         this.stream.writeBoolean(true)
+
 
         this.stream.writeStringReference('')
         this.stream.writeStringReference('')

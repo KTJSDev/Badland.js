@@ -1,10 +1,10 @@
 export class LogicSurvival {
     static encode(stream) {
-        stream.writeVInt(6400)
+        stream.writeVInt(6584)
         stream.writeVInt(-1)
         stream.writeVInt(0)
         stream.writeVInt(0)
-        stream.writeVInt(6400)
+        stream.writeVInt(6584)
         stream.writeVInt(0)
         stream.writeVInt(0)
         stream.writeVInt(0)

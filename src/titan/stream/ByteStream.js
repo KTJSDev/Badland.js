@@ -94,26 +94,67 @@ export class ByteStream {
    * @returns { Number } VarInt
    */
   readVInt () {
-    let result = 0,
-      shift = 0,
-      s = 0,
-      a1 = 0,
-      a2 = 0
-    do {
-      let byte = this.buffer[this.offset++]
-      if (shift === 0) {
-        a1 = (byte & 0x40) >> 6
-        a2 = (byte & 0x80) >> 7
-        s = (byte << 1) & ~0x181
-        byte = s | (a2 << 7) | a1
-      }
-      result |= (byte & 0x7f) << shift
-      shift += 7
-      if (!(byte & 0x80))
-      { break }
-    } while (true)
+    this.bitOffset = 0;
+    let value = 0;
+    let byteValue = this.buffer[this.offset++];
 
-    return (result >> 1) ^ (-(result & 1))
+    if ((byteValue & 0x40) != 0)
+    {
+        value |= byteValue & 0x3F;
+
+        if ((byteValue & 0x80) != 0)
+        {
+            value |= ((byteValue = this.buffer[this.offset++]) & 0x7F) << 6;
+
+            if ((byteValue & 0x80) != 0)
+            {
+                value |= ((byteValue = this.buffer[this.offset++]) & 0x7F) << 13;
+
+                if ((byteValue & 0x80) != 0)
+                {
+                    value |= ((byteValue = this.buffer[this.offset++]) & 0x7F) << 20;
+
+                    if ((byteValue & 0x80) != 0)
+                    {
+                        value |= ((byteValue = this.buffer[this.offset++]) & 0x7F) << 27;
+                        return (value | 0x80000000);
+                    }
+
+                    return (value | 0xF8000000);
+                }
+
+                return (value | 0xFFF00000);
+            }
+
+            return (value | 0xFFFFE000);
+        }
+
+        return (value | 0xFFFFFFC0);
+    }
+
+    value |= byteValue & 0x3F;
+
+    if ((byteValue & 0x80) != 0)
+    {
+        value |= ((byteValue = this.buffer[this.offset++]) & 0x7F) << 6;
+
+        if ((byteValue & 0x80) != 0)
+        {
+            value |= ((byteValue = this.buffer[this.offset++]) & 0x7F) << 13;
+
+            if ((byteValue & 0x80) != 0)
+            {
+                value |= ((byteValue = this.buffer[this.offset++]) & 0x7F) << 20;
+
+                if ((byteValue & 0x80) != 0)
+                {
+                    value |= ((byteValue = this.buffer[this.offset++]) & 0x7F) << 27;
+                }
+            }
+        }
+    }
+
+    return value;
   }
 
   /**
@@ -363,6 +404,20 @@ export class ByteStream {
     this.writeInt(-1)
   }
 
+  readBytes() {
+    this.bitOffset = 0
+    const length = this.readInt()
+
+    if (length === -1)
+      return Buffer.alloc(0)
+
+    const bytes = this.buffer.slice(this.offset, this.offset + length)
+
+    this.offset += length
+
+    return bytes
+  }
+
   /**
    * Adding more space to Buffer
    * @param {Number} capacity Amount of new space
@@ -392,5 +447,9 @@ export class ByteStream {
 
   getLength() {
     return this.buffer.length
+  }
+
+  getByteArray() {
+    return this.buffer.slice(0, this.offset)
   }
 }
